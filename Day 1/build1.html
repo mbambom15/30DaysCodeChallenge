@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Personal Profile</title>
+	<style type="text/css">
+		/*now we do nav bar*/
+		header{
+			background-color: #5D8AA8;
+			width: 100%;
+			display:flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 10px 20px;
+  box-sizing: border-box;
+		}
+		.left-header h2 {
+  color: white;
+  margin: 0;
+}
+		.nav-bar ul{
+		  list-style-type: none;
+	      margin: 0;
+          padding: 0;
+          overflow: hidden;
+          display: flex;
+          gap: 10px;
+		}
+
+		
+
+		.nav-bar ul li a {
+			display: block;
+			color: white;
+  			text-align: center;
+  			padding: 14px 16px;
+  			text-decoration: none;
+  			transition: background-color 0.3s ease;
+
+		}
+
+		.nav-bar ul li a:hover {
+  background-color: #0288d1;
+}
+
+		.nav-bar li a.active {
+			background-color: #04AA6D;
+		}
+
+
+		*{
+			box-sizing: border-box;
+			margin: 0px;
+			padding: 0px;
+		}
+
+		body{
+			background-image: url("backy.jpeg");
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+		}
+
+		form{
+			display: flex;
+			flex-direction: column;
+			width:200px;
+			background-color: white;
+		}
+
+		label, input{
+		margin-bottom:10px;
+
+	    }
+
+	    .nav-bar{
+	    	display: inline-block;
+	    }
+	</style>
+</head>
+
+
+<body>
+	<header>
+	<div class="left-header">
+		<h2>N Mbambo</h2>
+	</div>
+	<div class="nav-bar">
+		<nav>
+			<ul>
+				<li><a href="#about">About</a></li>
+				<li><a href="#projects">Projects</a></li>
+				<li><a href="#contact">Contact Me</a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
+
+<br>
+
+<main>
+	<div class="about">
+		<h2>Welcome to my website.</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</div>
+<br>
+
+	<div class="projects">
+		<h2>Projects</h2>
+		<div class="project1">
+			<h4>LuckySpin Project</h4>
+			<a href="">Github</a>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
+		<div class="project2">
+			<h4>Hospital File Tracking Project</h4>
+			<a href="">Github</a>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+		</div>
+	</div>
+
+	<br>
+
+	<div class="contact">
+		<form>
+			<h2>Get in contact with us.</h2>
+			<label>Name:</label>
+			<input type="text" name="name" id="name" required>
+			<label>Surname:</label>
+			<input type="text" name="surname" id="surname" required>
+			<label>Subject:</label>
+			<input type="text" name="subject" id="subject" required>
+			<label>Email: </label>
+			<input type="email" name="useremail" id="useremail" required>
+			<label>Message: </label>
+			<textarea id="message" name="message" rows="3"></textarea>
+		</form>
+	</div>
+</main>
+<br>
+<br>
+<br>
+<br>
+<footer style="background-color: beige;">
+	© 2025 Nhlakanipho Mbambo - Profile Stuff
+</footer>
+
+</body>
+
+
+</html>

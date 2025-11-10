@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rate & Upload Content - Powering Possibilities</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #f8fafc;
+      scroll-behavior: smooth;
+      min-height: 100vh;
+    }
+
+    /* Header & Navigation */
+    header {
+      background: rgba(15, 23, 42, 0.95);
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.5);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #38bdf8;
+      gap: 0.75rem;
+      z-index: 1001;
+      text-decoration: none;
+    }
+
+    .logo img {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      background: rgba(56, 189, 248, 0.2);
+      padding: 5px;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .logo-main {
+      font-size: 1.2rem;
+    }
+
+    .logo-sub {
+      font-size: 0.7rem;
+      color: #cbd5e1;
+      font-weight: normal;
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      z-index: 1001;
+      padding: 5px;
+    }
+
+    .hamburger span {
+      width: 28px;
+      height: 3px;
+      background: #38bdf8;
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(-45deg) translate(-6px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(45deg) translate(-6px, -6px);
+    }
+
+    /* Navigation Links */
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-links li a {
+      color: #f8fafc;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      background: rgba(30, 41, 59, 0.6);
+    }
+
+    .nav-links li a:hover {
+      background: rgba(56, 189, 248, 0.2);
+      color: #38bdf8;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* Mobile Navigation */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        flex-direction: column;
+        background: rgba(15, 23, 42, 0.98);
+        width: 100%;
+        height: 100vh;
+        text-align: center;
+        transition: 0.3s;
+        padding-top: 80px;
+        gap: 2rem;
+        backdrop-filter: blur(10px);
+      }
+
+      .nav-links.active {
+        left: 0;
+      }
+
+      .nav-links li a {
+        font-size: 1.2rem;
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+      }
+
+      .nav-container {
+        padding: 1rem;
+      }
+
+      .logo {
+        font-size: 1rem;
+      }
+
+      .logo img {
+        height: 35px;
+        width: 35px;
+      }
+
+      .logo-main {
+        font-size: 1rem;
+      }
+
+      .logo-sub {
+        font-size: 0.6rem;
+      }
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    .page-title {
+      text-align: center;
+      margin: 2rem 0;
+      padding: 0 1rem;
+    }
+
+    .page-title h1 {
+      font-size: 2.5rem;
+      color: #38bdf8;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-title p {
+      color: #cbd5e1;
+      font-size: 1.1rem;
+    }
+
+    /* Upload Section */
+    .upload-section {
+      background: rgba(30, 41, 59, 0.9);
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      margin-bottom: 3rem;
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+    }
+
+    .upload-section h2 {
+      color: #38bdf8;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #38bdf8;
+      font-size: 1rem;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="file"],
+    .form-group select {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 10px;
+      border: 2px solid rgba(56, 189, 248, 0.3);
+      background: rgba(15, 23, 42, 0.6);
+      color: #f8fafc;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #38bdf8;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+    }
+
+    /* Rating Section */
+    .rating-group {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: rgba(51, 65, 85, 0.6);
+      border-radius: 10px;
+    }
+
+    .rating-group h3 {
+      color: #38bdf8;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .rating-options {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .rating-option {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      padding: 0.8rem 1.5rem;
+      background: rgba(30, 41, 59, 0.8);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .rating-option:hover {
+      border-color: #38bdf8;
+      transform: translateY(-2px);
+    }
+
+    .rating-option input[type="radio"] {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      accent-color: #38bdf8;
+    }
+
+    .rating-option label {
+      cursor: pointer;
+      font-size: 1rem;
+      margin: 0;
+      color: #f8fafc;
+    }
+
+    .rating-option.best { border-left: 4px solid #10b981; }
+    .rating-option.better { border-left: 4px solid #f59e0b; }
+    .rating-option.good { border-left: 4px solid #3b82f6; }
+
+    /* Submit Button */
+    .submit-btn {
+      width: 100%;
+      padding: 1.2rem;
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: #0f172a;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 25px rgba(56, 189, 248, 0.6);
+    }
+
+    /* Video List Section */
+    .video-list-section {
+      background: rgba(30, 41, 59, 0.9);
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+    }
+
+    .video-list-section h2 {
+      color: #38bdf8;
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .vlog-item {
+      background: rgba(51, 65, 85, 0.8);
+      padding: 2rem;
+      border-radius: 1rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .vlog-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
+    }
+
+    .vlog-item h4 {
+      color: #f8fafc;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .vlog-meta {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+    }
+
+    .vlog-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .rating-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    .rating-best { background: #10b981; color: #fff; }
+    .rating-better { background: #f59e0b; color: #fff; }
+    .rating-good { background: #3b82f6; color: #fff; }
+
+    video {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #cbd5e1;
+    }
+
+    .empty-state-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: rgba(15, 23, 42, 0.95);
+      color: #94a3b8;
+      font-size: 0.95rem;
+      margin-top: 4rem;
+      border-top: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .page-title h1 {
+        font-size: 2rem;
+      }
+
+      .upload-section,
+      .video-list-section {
+        padding: 1.5rem;
+      }
+
+      .rating-options {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .rating-option {
+        width: 100%;
+      }
+
+      .vlog-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="logo2.png" alt="Logo">
+        <div class="logo-text">
+          <span class="logo-main">Powering Possibilities</span>
+          <span class="logo-sub">Promoting Excellence</span>
+        </div>
+      </a>
+      
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="rating.html">Rate Videos</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="page-title">
+    <h1>🎬 Upload & Rate Content</h1>
+    <p>Share your amazing content and let the community decide what's best!</p>
+  </div>
+
+  <div class="container">
+    <div class="upload-section">
+      <h2>🎥 Upload Your Content</h2>
+      <form id="vlogForm">
+        <div class="form-group">
+          <label for="vlogTitle">Content Title *</label>
+          <input type="text" id="vlogTitle" placeholder="Enter a catchy title for your content" required>
+        </div>
+
+        <div class="form-group">
+          <label for="contentType">Content Type *</label>
+          <select id="contentType" required>
+            <option value="">Select content type...</option>
+            <option value="video">Video</option>
+            <option value="music">Music</option>
+            <option value="website">Website</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="vlogFile">Upload File (MP4, MP3, or link) *</label>
+          <input type="file" id="vlogFile" accept="video/*,audio/*" required>
+        </div>
+
+        <div class="rating-group">
+          <h3>⭐ Rate Your Confidence Level</h3>
+          <p style="color: #cbd5e1; margin-bottom: 1rem; font-size: 0.95rem;">How confident are you about your content's quality?</p>
+          <div class="rating-options">
+            <div class="rating-option best">
+              <input type="radio" id="best" name="rating" value="best">
+              <label for="best">🥇 Best - Outstanding Quality</label>
+            </div>
+            <div class="rating-option better">
+              <input type="radio" id="better" name="rating" value="better">
+              <label for="better">🥈 Better - Great Content</label>
+            </div>
+            <div class="rating-option good">
+              <input type="radio" id="good" name="rating" value="good" checked>
+              <label for="good">🥉 Good - Solid Work</label>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">🚀 Upload Content</button>
+      </form>
+    </div>
+
+    <div class="video-list-section">
+      <h2>📺 Uploaded Content</h2>
+      <div id="vlogList">
+        <div class="empty-state">
+          <div class="empty-state-icon">📭</div>
+          <p>No content uploaded yet. Be the first to share!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Powering Possibilities | Promoting Social Media Videos, Music & Websites</p>
+    <p style="margin-top: 0.5rem; font-size: 0.85rem;">Empowering creators, one upload at a time 🚀</p>
+  </footer>
+
+  <script>
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      }
+    });
+
+    // Form Submission
+    const vlogForm = document.getElementById('vlogForm');
+    const vlogList = document.getElementById('vlogList');
+
+    vlogForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const title = document.getElementById('vlogTitle').value;
+      const contentType = document.getElementById('contentType').value;
+      const fileInput = document.getElementById('vlogFile');
+      const file = fileInput.files[0];
+      const rating = document.querySelector('input[name="rating"]:checked').value;
+
+      if (!title || !contentType || !file) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      // Remove empty state if it exists
+      const emptyState = vlogList.querySelector('.empty-state');
+      if (emptyState) {
+        emptyState.remove();
+      }
+
+      // Create rating badge
+      const ratingBadges = {
+        'best': '<span class="rating-badge rating-best">🥇 Best</span>',
+        'better': '<span class="rating-badge rating-better">🥈 Better</span>',
+        'good': '<span class="rating-badge rating-good">🥉 Good</span>'
+      };
+
+      // Get content type emoji
+      const typeEmojis = {
+        'video': '🎥',
+        'music': '🎵',
+        'website': '🌐',
+        'other': '📁'
+      };
+
+      // Create vlog item
+      const vlogItem = document.createElement('div');
+      vlogItem.classList.add('vlog-item');
+
+      const currentDate = new Date().toLocaleDateString('en-ZA', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
+      });
+
+      vlogItem.innerHTML = `
+        <h4>${title}</h4>
+        <div class="vlog-meta">
+          <span>${typeEmojis[contentType]} ${contentType.charAt(0).toUpperCase() + contentType.slice(1)}</span>
+          <span>📅 ${currentDate}</span>
+          <span>${ratingBadges[rating]}</span>
+        </div>
+        <video controls>
+          <source src="${URL.createObjectURL(file)}" type="${file.type}">
+          Your browser does not support the video tag.
+        </video>
+      `;
+
+      vlogList.insertBefore(vlogItem, vlogList.firstChild);
+
+      // Reset form
+      vlogForm.reset();
+      
+      // Show success message
+      alert('✅ Content uploaded successfully!');
+
+      // Scroll to the new item
+      vlogItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  </script>
+</body>
+</html>
