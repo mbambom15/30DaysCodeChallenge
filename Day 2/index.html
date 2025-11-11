@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Contact Us</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+ <header>
+ 	<div class="left-heading">
+ 		<h2>Get in contact with us.</h2>
+ 	</div>
+ 	<div class="social-media">
+ 		<nav>
+ 			<ul>
+ 			<li><a href="https://www.linkedin.com/in/nhlakanipho-mbambo">Linkedin</a></li>
+ 			<li><a href="https://github.com/mbambom15">GitHub</a></li>
+ 		</ul>
+ 		</nav>
+ 	</div>
+ </header>
+ <main>
+ 	<div class="form-section">
+ 		<br>
+ 		<form id="contactForm" method="POST">
+ 			<h3>Fill in</h3>
+ 			<label>Name: </label>
+ 			<input type="text" name="name" id="name" required>
+ 			<label>Surname: </label>
+ 			<input type="text" name="surname" id="surname" required>
+ 			<label>Email: </label>
+ 			<input type="email" name="email" id="email" required>
+ 			<label>Subject: </label>
+ 			<input type="text" name="subject" id="subject" required>
+ 			<label>Message</label>
+ 			<textarea name="message" id="message" rows="5"></textarea>
+ 			<input type="submit" value="Submit">
+ 		</form>
+ 	</div>
+ </main>
+ <footer>
+ 	©Nhlakanipho Mbambo 2025 - 30 days of code
+ </footer>
+
+ <script>
+ 	const form = document.getElementById('contactForm');
+ 	form.addEventListener('submit', function(event) {
+ 		event.preventDefault();
+ 		const name = document.getElementById('name').value;
+ 		const surname = document.getElementById('surname').value;
+ 		const email = document.getElementById('email').value;
+ 		const subject = document.getElementById('subject').value;
+ 		const message = document.getElementById('message').value;
+ 		console.log(name);
+ 		alert(`Thank you ${email}\n\nYour message was received`);
+ 		form.reset();
+ 	});
+ </script>
+ </script>
+</body>
+</html>

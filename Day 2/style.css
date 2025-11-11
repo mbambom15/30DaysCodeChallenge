@@ -1,0 +1,111 @@
+*{
+	padding: 0px;
+	margin: 0px;
+	box-sizing: border-box;
+}
+
+html, body {
+	height: 100%;
+}
+
+body{
+	background-image: url("backy.jpeg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+header{
+	background-color: rgba(135, 206, 250, 0.9); 
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	box-sizing: border-box;
+}
+
+.left-heading h2 {
+	color: white;
+	margin: 0;
+}
+
+.social-media ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	display: flex;
+	gap: 10px;
+}
+
+.social-media ul li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	transition: background-color 0.3s ease;
+}
+
+.social-media ul li a:hover {
+	background-color: #0288d1;
+}
+
+.social-media{
+	display: inline-block;
+}
+
+main {
+	flex: 1;
+	display: flex;
+	justify-content: flex-end; /* Aligns content to the right */
+	align-items: flex-start;
+	padding: 20px;
+}
+
+.form-section {
+	width: auto;
+	max-width: 400px;
+}
+
+form{
+	display: flex;
+	flex-direction: column;
+	width: 300px;
+	background-color: white;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+form h3 {
+	margin-bottom: 15px;
+}
+
+label, input, textarea{
+	margin-bottom: 10px;
+}
+
+input[type="submit"] {
+	background-color: lightblue;
+	color: white;
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+input[type="submit"]:hover {
+	background-color: #0288d1;
+}
+
+footer{
+	background-color: rgba(135, 206, 250, 0.9);
+	padding: 15px;
+	text-align: center;
+	color: white;
+}
